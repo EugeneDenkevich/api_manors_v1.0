@@ -1,0 +1,74 @@
+{% extends 'admin/change_form.html' %}
+{% load i18n admin_urls %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+<style>
+  .required label, label.required {
+    font-weight: normal;
+}
+.aligned label.required:after {
+    content: '*';
+    color: red;
+}
+</style>
+{% endblock %}
+
+{% block object-tools %}
+  {% for fieldset in adminform %}
+    {% if fieldset.form.instance.fio %}
+      {% if fieldset.form.instance.stat == 'New' and not fieldset.form.instance.was_object %}
+        <input style="margin-right: 5px;" type="submit" value="Одобрить заявку" onclick="location.href=`{% url 'admin:change_purchase_status' %}`"/>
+        <input type="submit" value="Отклонить заявку" onclick="location.href=`{% url 'admin:change_purchase_denied' %}`"/>
+      {% elif fieldset.form.instance.stat == 'Approved' and not fieldset.form.instance.was_object %}
+      {% if fieldset.form.instance.is_finished is False %}
+        <input type="submit" value="Завершить заявку" onclick="location.href=`{% url 'admin:change_purchase_is_finished' %}`"/>
+      {% else %}
+      {% endif %}
+      {% else %}
+      {% endif %}
+
+      {% if fieldset.form.instance.stat == 'Approved' and not fieldset.form.instance.was_object %}
+      <form id="purchase_form" novalidate="">
+        <div>
+          <fieldset class="module aligned ">
+            <div class="form-row field-status">
+              <div>            
+                  <label>Одобрена:</label>                
+                  <div class="readonly"><img src="/static/admin/img/icon-yes.svg" alt="True"></div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </form>
+      {% else %}
+      {% endif %}
+    {% else %}
+    {% endif %}
+  {% endfor %}
+  {{ block.super }}
+{% endblock %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% if fieldset.form.instance.fio %}
+    {% include "admin/includes/fieldset_without_status.html" %}
+  {% else %}
+    {% include "admin/includes/fieldset_without_status.html" %}
+  {% endif %}
+{% endfor %}
+{% endblock %}
+
+{{ fieldset.form.instance.is_finished }}
+
+{% block submit_buttons_bottom %}
+  {% for fieldset in adminform %}
+    {% if fieldset.form.instance.fio and fieldset.form.instance.is_finished == True %}
+    <!-- The custom back button  -->
+    <a href="{% url opts|admin_urlname:'changelist' %}"><input style="float: left"  type="button" value="Назад"></a>
+    {% else %}
+    {{ block.super }}
+    {% endif %}
+  {% endfor %}
+{% endblock %}

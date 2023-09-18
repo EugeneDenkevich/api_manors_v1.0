@@ -1,0 +1,45 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+<style>
+  .required label, label.required {
+    font-weight: normal;
+}
+.aligned label.required:after {
+    content: '*';
+    color: red;
+}
+</style>
+{% endblock %}
+
+{% block object-tools %}
+  {{ block.super }}
+  {% for fieldset in adminform %}
+  {% if fieldset.form.instance.email %}
+  <input style="margin-right: 5px; margin-bottom: 15px;" type="submit" value="Сменить пароль" onclick="location.href=`{% url 'admin:password_change' %}`"/>
+  {% else %}
+  {% endif %}
+  {% endfor %}
+{% endblock %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% include "admin/includes/fieldset_add_user.html" %}
+  {% if not fieldset.form.instance.email %}
+  {% endif %}
+{% endfor %}
+{% endblock %}
+
+{{ fieldset.form.instance.is_finished }}
+
+
+{% block submit_buttons_bottom %}
+  {% for fieldset in adminform %}
+    {% if fieldset.form.instance.fio and fieldset.form.instance.is_finished == True %}
+    {% else %}
+    {{ block.super }}
+    {% endif %}
+  {% endfor %}
+{% endblock %}
