@@ -8,13 +8,19 @@ ENV PYTHONUNBUFFERED 1
 
 # Copy project's dependencies
 WORKDIR /app
-COPY ./poetry.lock ./pyproject.toml /app/
 
-# Instal project's dependencies
-RUN python -m pip install --upgrade pip && \ 
-    pip install poetry && \
-    poetry config virtualenvs.create false && \
-    poetry install --no-root --no-interaction $group
+# Install project's dependencies (pip)
+COPY ./requirements.txt /app
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools wheel
+RUN pip3 install -r requirements.txt
+
+# # Instal project's dependencies (poetry)
+# COPY ./poetry.lock ./pyproject.toml /app/
+# RUN python -m pip install --upgrade pip && \ 
+#     pip install poetry && \
+#     poetry config virtualenvs.create false && \
+#     poetry install --no-root --no-interaction $group
 
 # Copy all project's files
 COPY ./entrypoint.sh .
