@@ -23,7 +23,7 @@ FRONTEND_URL = "http://zapovedny-front.eugenestudio.site/"
 ALLOWED_HOSTS = [
     'http://localhost:3000',
     'https://api.zapovedny.travelweb.dev',
-    'https://api.zapovedny.travelweb.dev/',
+    'api.zapovedny.travelweb.dev',
 ]
 
 CORS_ALLOWED_ORIGINS = [
