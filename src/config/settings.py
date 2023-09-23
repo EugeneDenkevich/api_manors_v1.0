@@ -20,12 +20,12 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 FRONTEND_URL = "http://zapovedny-front.eugenestudio.site/"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['http://localhost:3000', 'https://api.zapovedny.travelweb.dev']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    # "http://eugenestudio.site/",
+    "https://zapovedny.travelweb.dev",
 ]
 
 INTERNAL_IPS = [
@@ -137,10 +137,10 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-MEDIA_URL = '/media/'
+STATIC_URL = os.environ.get('STATIC_URL')
+STATIC_ROOT = os.environ.get('STATIC_ROOT')
+MEDIA_URL = os.environ.get('MEDIA_URL')
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT')
 
 LOGGING = {
     'version': 1,
