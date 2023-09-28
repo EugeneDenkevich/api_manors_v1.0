@@ -99,7 +99,7 @@ DATABASES = {
     'OPTIONS': {
         'sql_mode': 'traditional',
         },
-    'NAME': os.environ.get('MYSQL_DATABASE', 'eugenest_appdb'),
+    'NAME': os.environ.get('MYSQL_DATABASE', 'eugenest_myappdb'),
     'USER': os.environ.get('MYSQL_USER', 'eugenest_eugenest'),
     'PASSWORD': os.environ.get('MYSQL_ROOT_PASSWORD', 'Mediator4424011991'),
     'HOST': os.environ.get('MYSQL_DJANGO_HOST', 'localhost'),
