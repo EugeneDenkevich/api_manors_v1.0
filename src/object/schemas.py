@@ -22,7 +22,7 @@ class ObjectSchema(BasicAPISchema):
 
     def list(self):
         return self.extend_schema(
-            description='Get all houses aaa bbb',
+            description='Get all houses aaa bbb ccc',
             summary='Get all houses',
             request=ObjectSerializer,
             responses={
