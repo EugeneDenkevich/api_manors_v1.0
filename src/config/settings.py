@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'Admin123')
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-FRONTEND_URL = "http://zapovedny-front.eugenestudio.site/"
+FRONTEND_URL = "https://zapovedny.travelweb.dev/"
 
 ALLOWED_HOSTS = [
     'http://localhost:3000',
