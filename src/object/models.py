@@ -40,17 +40,14 @@ SEX_CHOICES = [
 ]
 
 BEDS = [
-    ('sgb', 'Single Bed'),
-    ('dbb', 'Double Bed'),
-    ('qsb', 'Queen SizeBed'),
-    ('ksb', 'King SizeBed'),
-    ('exb', 'Extra Bed'),
-    ('crb', 'Crib'),
+    ('sgb', 'Односпальная'),
+    ('dbb', 'Двухспальная'),
+    ('exb', 'Дополнительная'),
+    ('crb', 'Детская'),
 ]
 
 ROOMS = [
     ('bedroom', 'Спальня'),
-    ('guestroom', 'Гостинная'),
 ]
 
 PURCHASE_STATUSES = [
