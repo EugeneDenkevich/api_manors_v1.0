@@ -36,7 +36,7 @@ def get_beds_and_rooms(response_data):
             room_type = dict(ROOMS).get(room.get('type'))
             id = 0
             for i in range(len(BEDS)):
-                if BEDS[i][1] == bed_type:
+                if BEDS[i][1] == room_type:
                     id = i + 1
             response_data['rooms_types'].append(
                 {

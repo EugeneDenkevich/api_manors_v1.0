@@ -21,7 +21,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 FRONTEND_URL = "https://zapovedny.travelweb.dev/"
 
 ALLOWED_HOSTS = [
-    'http://localhost:3000',
+    'localhost',
+    '127.0.0.1',
     'https://api.zapovedny.travelweb.dev',
     'api.zapovedny.travelweb.dev',
 ]
