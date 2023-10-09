@@ -1,6 +1,8 @@
 import re
 
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
+
 from .settings import (MAX_IMAGE_SIZE, MAX_IMAGE_SIZE_MB)
 
 
@@ -19,3 +21,10 @@ def validate_name(image):
         raise ValidationError(
             'Russian letters are not allowed'
         )
+
+
+def get_price_validators():
+    return [
+        MaxValueValidator(9999.99),
+        MinValueValidator(0.0)
+    ]

@@ -1,5 +1,7 @@
 from django.db import models
 
+from config.validators import get_price_validators
+
 
 SOCIAL_CHOICES = [
     ('Facebook', 'Facebook'),
@@ -115,7 +117,7 @@ class Meal(models.Model):
     title = models.CharField(max_length=256, verbose_name=u'Название')
     time = models.TimeField(verbose_name=u'Время')
     price = models.DecimalField(
-        max_digits=6, decimal_places=2, verbose_name=u'Стоимость')
+        max_digits=6, decimal_places=2, verbose_name=u'Стоимость', validators=get_price_validators(),)
     feeding = models.ForeignKey(
         to='FeedingInfo', on_delete=models.CASCADE, related_name='meals')
 

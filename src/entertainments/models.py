@@ -1,6 +1,6 @@
 from django.db import models
 
-from config.validators import validate_image_size
+from config.validators import validate_image_size, get_price_validators
 
 
 class Entertainment(models.Model):
@@ -22,7 +22,8 @@ class Entertainment(models.Model):
 class EntertainmentPrice(models.Model):
     header = models.CharField(max_length=256, verbose_name = 'Услуга')
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name = 'Цена',
-                                blank=True, null=True)
+                                blank=True, null=True,
+                                validators=get_price_validators(),)
     entertainment = models.ForeignKey(
         to='Entertainment', on_delete=models.CASCADE, related_name='prices')
 

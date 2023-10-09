@@ -7,6 +7,7 @@ from config.validators import validate_image_size
 from config.settings import MAX_NUMBER_OF_GUESTS
 from config.utils.custom import feature_divided
 
+from config.validators import get_price_validators
 
 FEATURES_CHOICES = [
     ('Wifi', 'Бесплатный Wi-Fi'),
@@ -80,12 +81,14 @@ class Object(models.Model):
     price_weekday = models.DecimalField(
         decimal_places=2,
         max_digits=6,
-        verbose_name='Цена по будням'
+        verbose_name='Цена по будням',
+        validators=get_price_validators(),
     )
     price_holiday = models.DecimalField(
         decimal_places=2,
         max_digits=6,
         verbose_name='Цена по выходным',
+        validators=get_price_validators(),
     )
     created_date = models.DateField(
         auto_now_add=True, verbose_name='Дата добавления')
