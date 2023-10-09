@@ -67,8 +67,6 @@ class Object(models.Model):
         verbose_name='Вместимость',
         validators=[MaxValueValidator(
             MAX_NUMBER_OF_GUESTS), MinValueValidator(1)],
-        blank=True,
-        null=True
     )
     description_short = models.TextField(
         max_length=256,
@@ -88,8 +86,6 @@ class Object(models.Model):
         decimal_places=2,
         max_digits=6,
         verbose_name='Цена по выходным',
-        blank=True,
-        null=True
     )
     created_date = models.DateField(
         auto_now_add=True, verbose_name='Дата добавления')
