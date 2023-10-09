@@ -4,7 +4,6 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin
 )
-from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -57,8 +56,8 @@ class BaseUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name = 'Администратор'
+        verbose_name_plural = 'Администраторы'
 
     def __str__(self):
         return self.email
@@ -84,8 +83,8 @@ class Owner(models.Model):
     )
 
     class Meta:
-        verbose_name = _('owner')
-        verbose_name_plural = _('owner')
+        verbose_name = 'owner'
+        verbose_name_plural = 'owner'
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
