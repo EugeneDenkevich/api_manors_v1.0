@@ -28,7 +28,6 @@ FEATURES_CHOICES = [
     ('Dishwasher', 'Посудомоечная машина'),
 
     ('Furniture for babies', 'Мебель для грудных детей'),
-    ('Smoking indoors is prohibited', 'Курение в помещении запрещено'),
     ('Shower/Bath', 'Душ/Ванна'),
     ('Washing machine', 'Стиральная машина'),
     ('Iron', 'Утюг'),
