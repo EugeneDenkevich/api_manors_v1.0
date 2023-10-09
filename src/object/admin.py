@@ -117,8 +117,8 @@ class ObjectAdmin(admin.ModelAdmin):
         'purchase',
     ]
     list_filter = [
-        IsReserved,
-        PriceFilter,
+        # IsReserved,
+        # PriceFilter,
         PersNum,
     ]
     search_fields = ['title']
@@ -248,10 +248,10 @@ class PurchaseAdmin(admin.ModelAdmin):
     ]
 
     list_filter = [
-        EarliestDate,
+        # EarliestDate,
         'stat'
     ]
-    
+
     @admin.display(description='Статус')
     def status_manual(self, object):
         if object.stat == 'New':
