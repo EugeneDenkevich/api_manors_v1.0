@@ -111,9 +111,9 @@ DATABASES = {
     'OPTIONS': {
         'sql_mode': 'traditional',
         },
-    'NAME': os.environ.get('MYSQL_DATABASE', 'eugenest_appdb'),
-    'USER': os.environ.get('MYSQL_USER', 'eugenest_eugenest'),
-    'PASSWORD': os.environ.get('MYSQL_ROOT_PASSWORD', 'Mediator4424011991'),
+    'NAME': os.environ.get('MYSQL_DATABASE', 'eugenest_api-redis-bot-test'),
+    'USER': os.environ.get('MYSQL_USER', 'eugenest_api-redis-bot-test'),
+    'PASSWORD': os.environ.get('MYSQL_ROOT_PASSWORD', 'Mediator44@'),
     'HOST': os.environ.get('MYSQL_DJANGO_HOST', 'localhost'),
     'PORT': os.environ.get('MYSQL_PORT', '3306'),
     }
