@@ -5,6 +5,7 @@ except ImportError:
     pass
 
 import os
+import sys
 
 from pathlib import Path
 from dotenv import load_dotenv
@@ -12,25 +13,33 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+BOT_DIR = Path(__file__).resolve().parent.parent.parent
+sys.path.append(str(BOT_DIR))
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'Admin123')
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6964981221:AAHgPTqJBl9BSOqe0rYzBD43NHUvkJHF7kI")
+
+SECRET_KEY = os.environ.get("SECRET_KEY", "---> super-secret-key <---")
 
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-FRONTEND_URL = "https://zapovedny.travelweb.dev/"
+API_DOMAIN = "api-redis-bot-test.eugenestudio.site"
+FRONT_DOMAIN = "zapovedny.travelweb.dev"
+
+FRONTEND_URL = f"https://{FRONT_DOMAIN}"
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'https://api.zapovedny.travelweb.dev',
-    'api.zapovedny.travelweb.dev',
+    f'http://{API_DOMAIN}',
+    f'https://{API_DOMAIN}',
+    API_DOMAIN,
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://zapovedny.travelweb.dev",
+    f"https://{FRONT_DOMAIN}",
 ]
 
 INTERNAL_IPS = [

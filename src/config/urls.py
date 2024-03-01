@@ -6,6 +6,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 from config import views
 from object.views import *
+from .views import bot_view
 
 
 urlpatterns = [
@@ -27,8 +28,8 @@ urlpatterns = [
     # Admin
     path('admin/', admin.site.urls),
 
-    # Toolbar
-    # path("__debug__/", include("debug_toolbar.urls")),
+    # Bot
+    path(f'bot/{settings.BOT_TOKEN}', bot_view, name="bot"),
 ]
 
 if settings.DEBUG:
