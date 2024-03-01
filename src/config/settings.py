@@ -16,7 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BOT_DIR = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(BOT_DIR))
 
-from bot.settings import BOT_TOKEN
+from bot import settings as bot_settings
+
+BOT_TOKEN = bot_settings.BOT_TOKEN
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "---> super-secret-key <---")
 
