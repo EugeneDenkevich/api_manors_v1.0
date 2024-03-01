@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "---> super-secret-key <---")
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-API_DOMAIN = "api-redis-bot-test.eugenestudio.site"
+API_DOMAIN = "api-bot-redis.travelweb.dev"
 FRONT_DOMAIN = "zapovedny.travelweb.dev"
 
 FRONTEND_URL = f"https://{FRONT_DOMAIN}"
