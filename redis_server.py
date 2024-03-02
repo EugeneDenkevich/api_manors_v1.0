@@ -12,7 +12,6 @@ async def main():
         if msg["type"] == "message":
             chat_id = int(msg["data"].decode("utf-8").split(":::")[0])
             message = msg["data"].decode("utf-8").split(":::")[1]
-            print(message)
             await bot.send_message(
                 chat_id=chat_id,
                 text=message,
