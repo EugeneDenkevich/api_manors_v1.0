@@ -17,6 +17,6 @@ class BotService:
         """Отправка ботом сообщения"""
         connection = redis.Redis()
         connection.publish("chat_id", f"{str(chat_id)}:::{str(message)}")
-
+        # TODO Сделать создание connection в другом месте.
 
 bot_service = BotService()
