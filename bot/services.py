@@ -1,10 +1,17 @@
-from telebot import TeleBot
 import redis
+
+from aiogram import Dispatcher
+from aiogram import Bot
+import redis
+from telebot import TeleBot
 
 from bot.settings import BOT_TOKEN
 
 
-bot = TeleBot(token=BOT_TOKEN)
+bot = Bot(token=BOT_TOKEN)
+dp = Dispatcher()
+
+bot_sync = TeleBot(token=BOT_TOKEN)
 
 
 class BotService:
@@ -18,7 +25,7 @@ class BotService:
 
     def send_message(self, chat_id, message) -> None:
         """Отправка ботом сообщения"""
-        bot.send_message(chat_id=chat_id, text=message)
+        bot_sync.send_message(chat_id=chat_id, text=message)
 
 
 bot_service = BotService()
