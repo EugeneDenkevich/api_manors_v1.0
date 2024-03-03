@@ -13,4 +13,6 @@ API_TOKEN = getenv("BOT_TOKEN", "6964981221:AAHgPTqJBl9BSOqe0rYzBD43NHUvkJHF7kI"
 bot = telebot.TeleBot(API_TOKEN)
 
 
-bot.infinity_polling()
+bot.infinity_polling(
+    logger_level=logging.DEBUG
+)
