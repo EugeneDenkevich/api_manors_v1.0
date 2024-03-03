@@ -3,6 +3,7 @@ import logging
 
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
+from django.conf import settings
 
 from object.models import PhotoObject
 from object.models import Purchase
@@ -22,4 +23,5 @@ def create_message_for_bot(sender, instance: Purchase, **kwargs):
               f"Выселение: {instance.desired_departure}\n" \
               f"Почта: {instance.email}\n"
     logging.info("MESSAGE WAS SENT: %s".format(message))
-    bot_service.send_message(chat_id=5508567586, message=message)
+    for owner_id in settings.OWNER_CHAT_IDS:
+        bot_service.send_message(chat_id=owner_id, message=message)
