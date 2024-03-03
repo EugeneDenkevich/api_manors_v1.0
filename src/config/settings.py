@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     f'http://{API_DOMAIN}',
     f'https://{API_DOMAIN}',
+    "https://front-redis-bot.zapovedny.travelweb.dev/houses/",
     API_DOMAIN,
 ]
 
