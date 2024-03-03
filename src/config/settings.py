@@ -26,8 +26,8 @@ DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 API_DOMAIN = "api-bot-redis.travelweb.dev"
-FRONT_DOMAIN = "zapovedny.travelweb.dev"
-
+# FRONT_DOMAIN = "zapovedny.travelweb.dev"
+FRONT_DOMAIN = "front-redis-bot.zapovedny.travelweb.dev"
 FRONTEND_URL = f"https://{FRONT_DOMAIN}"
 
 ALLOWED_HOSTS = [
