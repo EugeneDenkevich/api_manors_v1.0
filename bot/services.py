@@ -24,7 +24,11 @@ class BotService:
 
     def send_message(self, chat_id, message) -> None:
         """Отправка ботом сообщения"""
-        bot_sync.send_message(chat_id=chat_id, text=message)
+        try:
+            bot_sync.send_message(chat_id=chat_id, text=message)
+        except:
+            # TODO Обработать ошибку, кода бот посылает сообщение ещё не подключённому юзеру.
+            pass
 
 
 bot_service = BotService()
