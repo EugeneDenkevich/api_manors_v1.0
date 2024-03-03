@@ -6,12 +6,11 @@ import redis
 from telebot import TeleBot
 
 from bot.settings import BOT_TOKEN
+from bot.bot_sync import bot as bot_sync
 
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
-
-bot_sync = TeleBot(token=BOT_TOKEN)
 
 
 class BotService:

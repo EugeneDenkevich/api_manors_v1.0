@@ -18,6 +18,8 @@ sys.path.append(str(BOT_DIR))
 
 from bot import settings as bot_settings
 
+
+OWNER_CHAT_ID = [5508567586] # FIXME Убрать, когда будет нормальное добавление владельца в БД.
 BOT_TOKEN = bot_settings.BOT_TOKEN
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "---> super-secret-key <---")
