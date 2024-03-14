@@ -22,4 +22,3 @@ async def set_webhook():
 async def delete_webhook():
     await bot.delete_webhook()
     logging.info(f"Webhook was successfuly deleted")
-    

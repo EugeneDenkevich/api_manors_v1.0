@@ -204,3 +204,5 @@ MAX_IMAGE_SIZE = MAX_IMAGE_SIZE_MB * (1024**2)
 MAX_NUMBER_OF_GUESTS = 50
 
 AUTH_USER_MODEL = 'authentication.BaseUser'
+
+WEB_APP_HOST = os.getenv("WEB_APP_HOST", "localhost:8000")

@@ -29,7 +29,7 @@ def send_start(message: Message) -> None:
             text="❌ Извините, произошла ошибка\n."
                  "Мы не смогли добавить вас в базу данных."
         )
-        
+
 if __name__ == "__main__":
     logging.info("SYNC BOT STARTED")    
     bot.infinity_polling(
