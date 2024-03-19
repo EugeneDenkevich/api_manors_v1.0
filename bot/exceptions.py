@@ -14,9 +14,9 @@ class BaseError(BaseException):
     """Базовое исключение для бота"""
     error: str = Errors.UNKNOWN
 
-    async def __new__(cls, message: Message):
+    def __new__(cls, message: Message):
         try:
-            await message.answer(cls.error)
+            message.answer(cls.error)
         except Exception as error:
             logging.error(f"Сообщение об ошибке не отправлено боту: {error}")
         logging.error(cls.error)
