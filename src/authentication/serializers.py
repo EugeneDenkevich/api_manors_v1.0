@@ -4,3 +4,7 @@ from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 
 class TelegramSerializer(ModelSerializer):
     telegram_id = PrimaryKeyRelatedField(queryset=TelegramIdUser.objects.all())
+
+    class Meta:
+        model = TelegramIdUser
+        fields = "__all__"
