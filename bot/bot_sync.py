@@ -30,7 +30,7 @@ def send_start(message: Message) -> None:
         elif response.status_code == 400:
             bot.send_message(
                 chat_id=message.chat.id,
-                text="✅ Вы уже добавлены в базу данных."
+                text="⚠️ Вы уже добавлены в базу данных."
             )
         else:
             bot.send_message(
@@ -43,6 +43,7 @@ def send_start(message: Message) -> None:
             text=f"❌ Извините, произошла ошибка: {e}\n"
             "Мы не смогли добавить вас в список владельцев.",
         )
+
 
 
 if __name__ == "__main__":
