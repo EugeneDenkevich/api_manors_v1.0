@@ -45,7 +45,6 @@ def send_start(message: Message) -> None:
         )
 
 
-
 if __name__ == "__main__":
     logging.info("SYNC BOT STARTED")
     bot.infinity_polling(
