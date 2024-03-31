@@ -1,5 +1,5 @@
 from .models import TelegramIdUser
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
+from rest_framework.serializers import ModelSerializer
 
 
 class TelegramSerializer(ModelSerializer):

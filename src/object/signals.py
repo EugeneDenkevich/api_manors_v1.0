@@ -3,10 +3,10 @@ import logging
 
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
-from django.conf import settings
 
 from object.models import PhotoObject
 from object.models import Purchase
+from authentication.service import telegram_service
 from bot import bot_service
 
 
@@ -22,6 +22,7 @@ def create_message_for_bot(sender, instance: Purchase, **kwargs):
               f"Заселение: {instance.desired_arrival}\n" \
               f"Выселение: {instance.desired_departure}\n" \
               f"Почта: {instance.email}\n"
-    logging.info("MESSAGE WAS SENT: %s".format(message))
-    for owner_id in settings.OWNER_CHAT_IDS:
-        bot_service.send_message(chat_id=owner_id, message=message)
+    for chat_id in telegram_service.get_telegram_ids():
+        bot_service.send_message(chat_id, message)
+        logging.info(f"Message was sent: telegram_id: {chat_id}")
+        

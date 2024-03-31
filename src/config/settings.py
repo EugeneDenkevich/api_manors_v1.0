@@ -19,8 +19,6 @@ sys.path.append(str(BOT_DIR))
 from bot import settings as bot_settings
 
 
-OWNER_CHAT_IDS = [5508567586, 572636659] # TODO Убрать, когда будет нормальное добавление
-                                         # владельца в БД и рассылка по списку из БД.
 BOT_TOKEN = bot_settings.BOT_TOKEN
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "---> super-secret-key <---")
@@ -164,14 +162,18 @@ MEDIA_ROOT = os.environ.get('MEDIA_ROOT', '/home/eugenest/WwW/zapovedny.travelwe
 
 LOGGING = {
     'version': 1,
+    "disable_existing_loggers": False,
     'handlers': {
         'console': {'class': 'logging.StreamHandler'}
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
     },
     'loggers': {
         'django.db.backends': {
             'handlers': ['console'],
             'level': 'INFO',
-            # 'level': 'DEBUG'
         }
     },
 }

@@ -8,7 +8,7 @@ import requests
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = getenv("BOT_TOKEN", "6731870799:AAEmVFfFWWiJrdJzLJB76QZtDFCE6NVwK2w")
+API_TOKEN = getenv("BOT_TOKEN", "")
 
 bot = TeleBot(API_TOKEN)
 
