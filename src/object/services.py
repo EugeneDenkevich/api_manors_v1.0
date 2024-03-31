@@ -35,7 +35,6 @@ class PurchaseServies:
             stralign='center',
             showindex=False
         )
-        print(table)
         return table
 
 
