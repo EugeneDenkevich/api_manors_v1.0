@@ -2,10 +2,14 @@ from rest_framework import viewsets
 from django.db.models import Count
 from django.utils.decorators import method_decorator
 
-from .logic import get_beds_and_rooms
-from .models import *
-from .serializers import *
-from .schemas import *
+from object.logic import get_beds_and_rooms
+from object.models import Object
+from object.models import Purchase
+from object.serializers import ObjectSerializer
+from object.serializers import PurchaseSerializer
+from object.schemas import house_schema
+from object.schemas import purchase_schema
+from object.services import purchase_service
 
 
 @method_decorator(name='retrieve', decorator=house_schema.retrieve())
@@ -29,6 +33,7 @@ class ObjectModelViewSet(viewsets.ModelViewSet):
         """
         response = super().list(request, *args, **kwargs)
         response.data = get_beds_and_rooms(response.data)
+        purchase_service.get_daily_data()
         return response
 
 
