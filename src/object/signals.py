@@ -25,4 +25,3 @@ def create_message_for_bot(sender, instance: Purchase, **kwargs):
     for chat_id in telegram_service.get_telegram_ids():
         bot_service.send_message(chat_id, message)
         logging.info(f"Message was sent: telegram_id: {chat_id}")
-        

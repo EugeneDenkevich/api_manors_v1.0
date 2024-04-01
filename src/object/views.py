@@ -33,7 +33,6 @@ class ObjectModelViewSet(viewsets.ModelViewSet):
         """
         response = super().list(request, *args, **kwargs)
         response.data = get_beds_and_rooms(response.data)
-        purchase_service.get_daily_data()
         return response
 
 

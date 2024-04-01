@@ -13,19 +13,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-BOT_DIR = Path(__file__).resolve().parent.parent.parent
+BOT_DIR = BASE_DIR.parent
 sys.path.append(str(BOT_DIR))
 
 from bot import settings as bot_settings
 
 
-BOT_TOKEN = bot_settings.BOT_TOKEN
+BOT_TOKEN = bot_settings.TOKEN
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "---> super-secret-key <---")
 
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+WEB_APP_HOST = os.getenv("WEB_APP_HOST", "localhost:8000")
 API_DOMAIN = "api-bot-redis.travelweb.dev"
 # FRONT_DOMAIN = "zapovedny.travelweb.dev"
 FRONT_DOMAIN = "front-redis-bot.zapovedny.travelweb.dev"
@@ -207,5 +208,3 @@ MAX_IMAGE_SIZE = MAX_IMAGE_SIZE_MB * (1024**2)
 MAX_NUMBER_OF_GUESTS = 50
 
 AUTH_USER_MODEL = 'authentication.BaseUser'
-
-WEB_APP_HOST = os.getenv("WEB_APP_HOST", "localhost:8000")

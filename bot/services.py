@@ -1,15 +1,14 @@
 import redis
+from io import BufferedReader
 
 from aiogram import Dispatcher
 from aiogram import Bot
-import redis
-from telebot import TeleBot
 
-from bot.settings import BOT_TOKEN
+from bot.settings import TOKEN
 from bot.bot_sync import bot as bot_sync
 
 
-bot = Bot(token=BOT_TOKEN)
+bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 
@@ -26,7 +25,15 @@ class BotService:
         """Отправка ботом сообщения"""
         try:
             bot_sync.send_message(chat_id, message)
-        except:
+        except Exception as e:
+            # TODO Обработать ошибку, кода бот посылает сообщение ещё не подключённому юзеру.
+            pass
+        
+    def send_daily_data(self, chat_id: int, daily_data: BufferedReader) -> None:
+        """Отправка ботом сообщения"""
+        try:
+            bot_sync.send_photo(chat_id, daily_data)
+        except Exception as e:
             # TODO Обработать ошибку, кода бот посылает сообщение ещё не подключённому юзеру.
             pass
 

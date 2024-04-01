@@ -8,9 +8,8 @@ import requests
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = getenv("BOT_TOKEN", "")
-
-bot = TeleBot(API_TOKEN)
+TOKEN = getenv("TOKEN")
+bot = TeleBot(TOKEN)
 
 
 @bot.message_handler(commands=["imowner"])
