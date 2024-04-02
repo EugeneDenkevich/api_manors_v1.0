@@ -48,4 +48,5 @@ if __name__ == "__main__":
     logging.info("SYNC BOT STARTED")
     bot.infinity_polling(
         logger_level=logging.INFO,
+        allowed_updates=False,
     )

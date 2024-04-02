@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+DEV = os.getenv("DEV", False)
 BASE_DIR = Path(__file__).resolve().parent.parent
 BOT_DIR = BASE_DIR.parent
 sys.path.append(str(BOT_DIR))
@@ -108,7 +109,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-DATABASES = {
+MYSQL_BASE = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
     'OPTIONS': {
@@ -122,12 +123,14 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+SQLITE_BASE = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+DATABASES = SQLITE_BASE if DEV else MYSQL_BASE
 
 AUTH_PASSWORD_VALIDATORS = [
     {

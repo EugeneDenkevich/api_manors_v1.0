@@ -7,7 +7,7 @@ from requests.exceptions import ConnectionError
 
 from bot.settings import SERVER_HOST
 from bot.settings import SERVER_PORT
-from bot.settings import BOT_TOKEN
+from bot.settings import TOKEN
 from bot.exceptions import NotConnectedError
 from bot.exceptions import ServerError
 
@@ -19,7 +19,7 @@ router = Router()
 async def start(message: Message) -> None:
     await message.answer("Пошёл запрос на сервер...")
     try:
-        url = f"{SERVER_HOST}:{SERVER_PORT}/bot/{BOT_TOKEN}"    
+        url = f"{SERVER_HOST}:{SERVER_PORT}/bot/{TOKEN}"    
         response = requests.post(url, data=dict(message))
         await message.answer(response.text)
     except ConnectionError as error:
