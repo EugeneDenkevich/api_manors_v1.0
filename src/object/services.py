@@ -64,8 +64,12 @@ class PurchaseService:
             f'{lunch["adults"]} + {lunch["kids"]}',
             f'{dinner["adults"]} + {dinner["kids"]}',
         ]
+        def highlight_total(s):
+            if "Итого" in s.values:
+                return ['font-weight: bold' if v == "Итого" else '' for v in s]
+            return [''] * len(s)
         dataframe.loc[len(purchases) + 1] = ["Итого", *total]
-        df_styled = dataframe.style.background_gradient()
+        df_styled = dataframe.style.apply(highlight_total, axis=1).background_gradient()
         dfi.export(df_styled, "table.png")
         return open("table.png", "rb")
     
