@@ -46,17 +46,11 @@
 <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
   <div class="form-row">
     {{ form.username.errors }}
-
-    <!-- EUGENE: HINT FOR THE LOGGINING (EMAIL) -->
-    {{ form.username.label_tag }} <b>user@user.ru</b> {{ form.username }}
-
+    {{ form.username.label_tag }}{{ form.username }}
   </div>
   <div class="form-row">
     {{ form.password.errors }}
-
-    <!-- EUGENE: HINT FOR THE LOGGINING (PASSWORD) -->
-    {{ form.password.label_tag }} <b>IThoxio0</b> {{ form.password }}
-
+    {{ form.password.label_tag }}{{ form.password }}
     <input type="hidden" name="next" value="{{ next }}">
   </div>
   {% url 'admin_password_reset' as password_reset_url %}
