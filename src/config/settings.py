@@ -153,10 +153,9 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = os.environ.get('STATIC_URL', '/src/static/')
-STATIC_ROOT = os.environ.get('STATIC_ROOT', '/home/eugenest/WwW/zapovedny.travelweb.dev/api/repo/src/static/')
-MEDIA_URL = os.environ.get('MEDIA_URL', '/src/media/')
-MEDIA_ROOT = os.environ.get('MEDIA_ROOT', '/home/eugenest/WwW/zapovedny.travelweb.dev/api/repo/src/media/')
+STATIC_ROOT = BASE_DIR / "src" / "static"
+MEDIA_URL = "/src/media/"
+MEDIA_ROOT = BASE_DIR + "src" / "media"
 
 LOGGING = {
     'version': 1,
