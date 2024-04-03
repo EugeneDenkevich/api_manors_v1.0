@@ -6,11 +6,11 @@ from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 
-from config.settings import FRONTEND_URL
+from config.settings import FRONT_DOMAIN
 
 
 def index_redirect(request):
-    return redirect(FRONTEND_URL)
+    return redirect("https://" + FRONT_DOMAIN)
 
 
 @extend_schema(

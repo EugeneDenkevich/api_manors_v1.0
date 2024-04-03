@@ -22,30 +22,24 @@ from bot import settings as bot_settings
 
 BOT_TOKEN = bot_settings.TOKEN
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "---> super-secret-key <---")
+SECRET_KEY = os.environ.get("SECRET_KEY", "secret-key")
 
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 WEB_APP_HOST = os.getenv("WEB_APP_HOST", "localhost:8000")
-API_DOMAIN = "api-bot-redis.travelweb.dev"
-# FRONT_DOMAIN = "zapovedny.travelweb.dev"
-FRONT_DOMAIN = "front-redis-bot.zapovedny.travelweb.dev"
-FRONTEND_URL = f"https://{FRONT_DOMAIN}"
+FRONT_DOMAIN = os.getenv("FRONT_DOMAIN", "localhost:3000")
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    f'http://{API_DOMAIN}',
-    f'https://{API_DOMAIN}',
-    "https://front-redis-bot.zapovedny.travelweb.dev/houses/",
-    API_DOMAIN,
+    WEB_APP_HOST,
+    'http://' + WEB_APP_HOST,
+    'https://' + WEB_APP_HOST,
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    f"https://{FRONT_DOMAIN}",
+    FRONT_DOMAIN,
+    "http://" + FRONT_DOMAIN,
+    "https://" + FRONT_DOMAIN,
 ]
 
 INTERNAL_IPS = [
