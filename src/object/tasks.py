@@ -18,10 +18,12 @@ def start():
     start_time = datetime.time(6, 0, 0)
     scheduler.add_job(
         send_daily_data,
-        'cron',
-        hour=start_time.hour,
-        minute=start_time.minute,
-        timezone=pytz.timezone(settings.TIME_ZONE)
+        "interval",
+        seconds=10,
+        # 'cron',
+        # hour=start_time.hour,
+        # minute=start_time.minute,
+        # timezone=pytz.timezone(settings.TIME_ZONE)
     )
     scheduler.start()
 
