@@ -2,8 +2,7 @@ from typing import List, Dict
 from datetime import datetime
 import pandas as pd
 from io import BufferedReader
-
-import dataframe_image as dfi
+import matplotlib.pyplot as plt
 
 from object.models import Purchase
 
@@ -65,10 +64,24 @@ class PurchaseService:
             f'{dinner["adults"]} + {dinner["kids"]}',
         ]
         dataframe.loc[len(purchases) + 1] = ["Итого", *total]
-        df_styled = dataframe.style.background_gradient()
-        dfi.export(df_styled, "table.png")
+        ax = plt.subplot()
+        ax.axis("off")
+        df_styled = dataframe.style.set_properties(**{'text-align': 'center'})
+        table = ax.table(
+            cellText=df_styled.values,
+            colLabels=df_styled.columns,
+            cellLoc="center",
+            loc="center",
+            colColours=["lightgray"]*len(dataframe.columns),
+        )
+        table.auto_set_font_size(False)
+        table.set_fontsize(12)
+        for (i, j), cell in table.get_celld().items(): # Ищем "Итого" и делаем жирным.
+            if i == len(dataframe) and j == 0:
+                cell.set_text_props(fontweight='bold')
+        plt.savefig("table.png", bbox_inches="tight")
         return open("table.png", "rb")
-    
+
     def _fill_data(self, data: Dict[str, List], meal: str, repast: Dict[str, int], purchase: Purchase):
         data[meal].append(
             f"{purchase.count_adult} + {purchase.count_kids}"
