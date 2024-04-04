@@ -31,13 +31,11 @@ WEB_APP_HOST = os.getenv("WEB_APP_HOST", "localhost:8000")
 FRONT_DOMAIN = os.getenv("FRONT_DOMAIN", "localhost:3000")
 
 ALLOWED_HOSTS = [
-    WEB_APP_HOST,
     'http://' + WEB_APP_HOST,
     'https://' + WEB_APP_HOST,
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    FRONT_DOMAIN,
     "http://" + FRONT_DOMAIN,
     "https://" + FRONT_DOMAIN,
 ]
