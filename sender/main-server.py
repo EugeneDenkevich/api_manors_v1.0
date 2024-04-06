@@ -47,6 +47,10 @@ def send_daily_data() -> None:
     print()
     print(response.text)
     print()
+    print(response.headers)
+    print()
+    print(response.reason)
+    print()
     print(response.text, file=open("log.txt", "w"))
     print()
     if response.status_code != 200:
