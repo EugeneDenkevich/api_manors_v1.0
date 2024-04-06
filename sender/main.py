@@ -32,7 +32,7 @@ load_dotenv()
 
 
 def send_daily_data() -> None:
-    wab_app_host = getenv("WEB_APP_HOST", "http://localhost:8000")
+    wab_app_host = getenv("WEB_APP_HOST", "https://api-doc.zapovednostrov.by")
     print()
     print(wab_app_host)
     print()
@@ -42,6 +42,10 @@ def send_daily_data() -> None:
     print(response.status_code)
     print()
     print(response.text)
+    print()
+    print(response.headers)
+    print()
+    print(response.reason)
     print()
     print(response.text, file=open("log.txt", "w"))
     print()
@@ -109,7 +113,7 @@ def start():
     scheduler.add_job(
         send_daily_data,
         "interval",
-        seconds=10,
+        seconds=5,
         # 'cron',
         # hour=start_time.hour,
         # minute=start_time.minute,
