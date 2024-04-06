@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     "http://" + FRONT_DOMAIN,
     "https://" + FRONT_DOMAIN,
-    "185.188.182.43" # Рассыльщик сообщений
+    "http://185.188.182.43" # Рассыльщик сообщений
 ]
 
 INTERNAL_IPS = [
