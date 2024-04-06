@@ -36,12 +36,13 @@ ALLOWED_HOSTS = [
     'https://' + WEB_APP_HOST,
 ]
 
-    # CORS_ALLOWED_ORIGINS = [
-    #     "http://" + FRONT_DOMAIN,
-    #     "https://" + FRONT_DOMAIN,
-    #     "http://185.188.182.43", # Рассыльщик сообщений
-    # ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://" + FRONT_DOMAIN,
+    "https://" + FRONT_DOMAIN,
+    "http://185.188.182.43", # Рассыльщик сообщений
+    "http://vm2705411.firstbyte.club ", # Рассыльщик сообщений
+]
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
