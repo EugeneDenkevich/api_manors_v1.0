@@ -17,6 +17,7 @@ class BasicAPISchema:
             401: self.get_401(),
             403: self.get_403(),
             404: self.get_404(),
+            500: self.get_500(),
         }
 
     def retrieve(self):
@@ -55,7 +56,17 @@ class BasicAPISchema:
     @staticmethod
     def get_400() -> Dict:
         return {
-            400: 'Bad request'
+            400: OpenApiResponse(
+                response=OpenApiTypes.OBJECT,
+                examples=[
+                    OpenApiExample(
+                        "Bed Request",
+                        description='Bad Request',
+                        value={"detail": "Страница не найдена."},
+                        response_only=True,
+                    ),
+                ]
+            )
         }
     
     @staticmethod
@@ -76,10 +87,26 @@ class BasicAPISchema:
             404: OpenApiResponse(
                     response=OpenApiTypes.OBJECT,
                     examples=[OpenApiExample(
-                             "Bed Request",
-                             description='Bad Request',
+                             "Not Found",
+                             description='Not Found',
                              value={"detail": "Страница не найдена."},
                              response_only=True,
                              ),]
                 )
+        }
+
+    @staticmethod
+    def get_500() -> Dict:
+        return {
+            500: OpenApiResponse(
+                response=OpenApiTypes.OBJECT,
+                examples=[
+                    OpenApiExample(
+                        "Internal Server Error",
+                        description='Internal Server Error',
+                        value={"detail": "Ошибка сервера."},
+                        response_only=True,
+                    ),
+                ]
+            )
         }
