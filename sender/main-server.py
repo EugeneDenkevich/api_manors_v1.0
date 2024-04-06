@@ -13,6 +13,10 @@ import sys
 root_path = Path(__file__).parent.parent
 sys.path.append(str(root_path))
 from bot.services import bot_service
+from flask import Flask
+
+
+application = Flask(__name__)
 
 
 sender_path = root_path / "sender"
@@ -121,5 +125,13 @@ def start():
         pass
 
 
+start()
+
+
+@application.get("/")
+def index():
+    return "No Content"
+
+
 if __name__ == "__main__":
-    start()
+    application.run(debug=True)

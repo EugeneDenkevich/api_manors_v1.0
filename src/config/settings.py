@@ -41,6 +41,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://" + FRONT_DOMAIN,
     "http://185.188.182.43", # Рассыльщик сообщений
     "http://vm2705411.firstbyte.club", # Рассыльщик сообщений
+    "sender.zapovednostrov.by"
+    "http://sender.zapovednostrov.by"
 ]
 
 INTERNAL_IPS = [
