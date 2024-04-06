@@ -36,12 +36,12 @@ ALLOWED_HOSTS = [
     'https://' + WEB_APP_HOST,
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://" + FRONT_DOMAIN,
-    "https://" + FRONT_DOMAIN,
-    "http://185.188.182.43" # Рассыльщик сообщений
-]
-
+    # CORS_ALLOWED_ORIGINS = [
+    #     "http://" + FRONT_DOMAIN,
+    #     "https://" + FRONT_DOMAIN,
+    #     "http://185.188.182.43", # Рассыльщик сообщений
+    # ]
+CORS_ALLOW_ALL_ORIGINS = True
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
