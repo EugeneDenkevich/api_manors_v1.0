@@ -13,8 +13,12 @@ import httpx
 root_path = Path(__file__).parent.parent
 sys.path.append(str(root_path))
 from bot.services import bot_service
+import pytz
 
 
+TIME_ZONE = "Europe/Moscow"
+START_HOURS = 8
+START_MINUTES = 0
 sender_path = root_path / "sender"
 log_path = sender_path / "py_log.log"
 image_path = sender_path / "table.png"
@@ -95,15 +99,15 @@ def _drow_using_dfi(dataframe: pd.DataFrame):
 
 def start():
     scheduler = BackgroundScheduler()
-    start_time = datetime.time(18, 0, 0)
+    start_time = datetime.time(START_HOURS, START_MINUTES, 0)
     scheduler.add_job(
         send_daily_data,
-        "interval",
-        seconds=5,
-        # 'cron',
-        # hour=start_time.hour,
-        # minute=start_time.minute,
-        # timezone=pytz.timezone(settings.TIME_ZONE),
+        # "interval",
+        # seconds=5,
+        'cron',
+        hour=start_time.hour,
+        minute=start_time.minute,
+        timezone=pytz.timezone(TIME_ZONE),
         max_instances=1,
     )
     scheduler.start()
