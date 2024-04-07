@@ -3,7 +3,7 @@ from telebot.types import Message
 from os import getenv
 from dotenv import load_dotenv
 import logging
-import requests
+import httpx
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -16,11 +16,21 @@ bot = TeleBot(TOKEN)
 def send_start(message: Message) -> None:
     try:
         wab_app_host = getenv("WEB_APP_HOST", "localhost:8000")
+        print()
+        print()
+        print(wab_app_host)
+        print()
+        print()
         telegram_id = message.chat.id
-        response = requests.post(
+        response = httpx.post(
             wab_app_host + "/api/telegram/get_daily_data/",
             json={"telegram_id": str(telegram_id)},
         )
+        print()
+        print()
+        print(response.status_code)
+        print()
+        print()
         if response.status_code == 201:
             bot.send_message(
                 chat_id=message.chat.id,
