@@ -31,6 +31,10 @@ def send_start(message: Message) -> None:
         print(response.status_code)
         print()
         print()
+        print(response.text)
+        print()
+        print()
+        print()
         if response.status_code == 201:
             bot.send_message(
                 chat_id=message.chat.id,
