@@ -15,9 +15,10 @@ bot = TeleBot(TOKEN)
 @bot.message_handler(commands=["imowner"])
 def send_start(message: Message) -> None:
     try:
+        wab_app_host = getenv("WEB_APP_HOST", "localhost:8000")
         telegram_id = message.chat.id
         response = requests.post(
-            "http://127.0.0.1:8000/api/telegram/",
+            wab_app_host + "/api/telegram/get_daily_data/",
             json={"telegram_id": str(telegram_id)},
         )
         if response.status_code == 201:
