@@ -11,14 +11,14 @@ class SyncBotService:
         try:
             bot.send_message(chat_id, message)
         except Exception as e:
-            pass
+            raise Exception()
         
     def send_daily_data(self, chat_id: int, daily_data: BufferedReader) -> None:
         """Отправка ботом ежедневной таблицы"""
         try:
             bot.send_photo(chat_id, daily_data)
         except Exception as e:
-            pass
+            raise Exception()
 
 
 bot_service = SyncBotService()

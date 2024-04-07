@@ -1,6 +1,5 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 import datetime
-import requests
 from dotenv import load_dotenv
 from os import getenv
 from exceptions import BadRequestError
@@ -10,6 +9,7 @@ import dataframe_image as dfi
 import logging
 from pathlib import Path
 import sys
+import httpx
 root_path = Path(__file__).parent.parent
 sys.path.append(str(root_path))
 from bot.services import bot_service
@@ -32,23 +32,9 @@ load_dotenv()
 
 
 def send_daily_data() -> None:
-    wab_app_host = getenv("WEB_APP_HOST", "https://api-doc.zapovednostrov.by")
-    print()
-    print(wab_app_host)
-    print()
+    wab_app_host = getenv("WEB_APP_HOST", "localhost:8000")
     url = wab_app_host + "/api/telegram/get_daily_data/"
-    response = requests.get(url=url)
-    print()
-    print(response.status_code)
-    print()
-    print(response.text)
-    print()
-    print(response.headers)
-    print()
-    print(response.reason)
-    print()
-    print(response.text, file=open("log.txt", "w"))
-    print()
+    response = httpx.get(url=url)
     if response.status_code != 200:
         raise BadRequestError()
     daily_data = response.json()
@@ -69,7 +55,7 @@ def send_daily_data() -> None:
     ]
     dataframe.loc[purchases_count + 1] = ["Итого", *total]
     # _drow_using_plt(dataframe)
-    _drow_using_dfi(dataframe)   
+    _drow_using_dfi(dataframe)
     for chat_id in telegram_ids:
         bot_service.send_daily_data(chat_id, open(image_path, "rb"))
 
