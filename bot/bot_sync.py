@@ -23,7 +23,7 @@ def send_start(message: Message) -> None:
         print()
         telegram_id = message.chat.id
         response = httpx.post(
-            wab_app_host + "/api/telegram/get_daily_data/",
+            wab_app_host + "/api/telegram/",
             json={"telegram_id": str(telegram_id)},
         )
         print()
