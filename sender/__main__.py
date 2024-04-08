@@ -29,6 +29,6 @@ if __name__ == "__main__":
         time_zone="Europe/Moscow",
         start_time=datetime.time(18, 0, 0),
         image_path=root_path / "table.png",
-        interval=True,
+        # interval=True,
     )
     sender.start()
