@@ -27,10 +27,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "secret-key")
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-WEB_APP_HOST = os.getenv("WEB_APP_HOST", "localhost")
-FRONT_DOMAIN = os.getenv("FRONT_DOMAIN", "localhost:3000")
+WEB_APP_HOST = os.getenv("WEB_APP_HOST", "127.0.0.1")
+FRONT_DOMAIN = os.getenv("FRONT_DOMAIN", "127.0.0.1:3000")
 
 ALLOWED_HOSTS = [
+    "localhost",
     WEB_APP_HOST,
     'http://' + WEB_APP_HOST,
     'https://' + WEB_APP_HOST,
