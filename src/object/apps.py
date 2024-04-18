@@ -7,5 +7,4 @@ class ObjectConfig(AppConfig):
     name = 'object'
 
     def ready(self):
-        import object.tasks
         import object.signals

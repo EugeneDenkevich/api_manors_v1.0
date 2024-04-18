@@ -27,10 +27,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "secret-key")
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-WEB_APP_HOST = os.getenv("WEB_APP_HOST", "localhost:8000")
-FRONT_DOMAIN = os.getenv("FRONT_DOMAIN", "localhost:3000")
+WEB_APP_HOST = os.getenv("WEB_APP_HOST", "127.0.0.1")
+FRONT_DOMAIN = os.getenv("FRONT_DOMAIN", "127.0.0.1:3000")
 
 ALLOWED_HOSTS = [
+    "localhost",
     WEB_APP_HOST,
     'http://' + WEB_APP_HOST,
     'https://' + WEB_APP_HOST,
@@ -39,6 +40,10 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     "http://" + FRONT_DOMAIN,
     "https://" + FRONT_DOMAIN,
+    "http://185.188.182.43", # Рассыльщик сообщений
+    "http://vm2705411.firstbyte.club", # Рассыльщик сообщений
+    "sender.zapovednostrov.by"
+    "http://sender.zapovednostrov.by"
 ]
 
 INTERNAL_IPS = [
@@ -176,6 +181,7 @@ LOGGING = {
 }
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',

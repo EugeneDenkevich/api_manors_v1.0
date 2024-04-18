@@ -1,5 +1,6 @@
 from drf_spectacular.utils import OpenApiResponse
 from src.config.utils.schemas import BasicAPISchema
+from drf_spectacular.types import OpenApiTypes
 from .serializers import *
 
 
@@ -24,6 +25,18 @@ class TelegramSchema(BasicAPISchema):
                     response="response",
                     description="Description of Status Code 400 cases",
                 ),
+            },
+        )
+
+    def get_daily_data(self):
+        return self.extend_schema(
+            description='Get daily data',
+            summary='Get daily data',
+            responses={
+                200: OpenApiResponse(
+                        response=[OpenApiTypes.OBJECT],
+                    ),
+                **self.get_responses(500),
             },
         )
 

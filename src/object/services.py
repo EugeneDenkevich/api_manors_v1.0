@@ -12,13 +12,14 @@ class PurchaseService:
     
     def get_daily_data(self) -> BufferedReader:
         """
-        Формирует таблицу для сотрудников усадьбы:
+        Формируем данные по усадьбе:
          - Получаем данные по питанию для всех домиков на сегодня.
          - Если сегодня заселение - завтрак не входит в данные.
          - Если сегодня выселение - ужин не входит в данные.
         
-        :return: Открытый в памяти png файл - таблица с данными по питанию.
+        :return: Данные для создания таблицы.
         """
+        # TODO Результат сделать в виде датакласса или pydantic схемы.
         today = datetime.now().date()
         purchases = Purchase.objects.filter(
             stat="Approved",
@@ -54,33 +55,16 @@ class PurchaseService:
                 data["Ужин"].append("-")
             else:
                 self._fill_data(data, "Ужин", dinner, purchase)
-        dataframe = pd.DataFrame(
-            data=data,
-            index=range(1, len(purchases) + 1),
-        )
-        total = [
-            f'{breakfast["adults"]} + {breakfast["kids"]}',
-            f'{lunch["adults"]} + {lunch["kids"]}',
-            f'{dinner["adults"]} + {dinner["kids"]}',
-        ]
-        dataframe.loc[len(purchases) + 1] = ["Итого", *total]
-        ax = plt.subplot()
-        ax.axis("off")
-        df_styled = dataframe.style.set_properties(**{'text-align': 'center'})
-        table = ax.table(
-            cellText=df_styled.values,
-            colLabels=df_styled.columns,
-            cellLoc="center",
-            loc="center",
-            colColours=["lightgray"]*len(dataframe.columns),
-        )
-        table.auto_set_font_size(False)
-        table.set_fontsize(12)
-        for (i, j), cell in table.get_celld().items(): # Ищем "Итого" и делаем жирным.
-            if i == len(dataframe) and j == 0:
-                cell.set_text_props(fontweight='bold')
-        plt.savefig("table.png", bbox_inches="tight")
-        return open("table.png", "rb")
+        result = {
+            "data": data,
+            "meals": {
+                "breakfast": breakfast,
+                "lunch": lunch,
+                "dinner": dinner,
+            },
+            "purchases_count": len(purchases),
+        }
+        return result
 
     def _fill_data(self, data: Dict[str, List], meal: str, repast: Dict[str, int], purchase: Purchase):
         data[meal].append(

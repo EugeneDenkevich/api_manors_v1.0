@@ -9,7 +9,6 @@ from object.serializers import ObjectSerializer
 from object.serializers import PurchaseSerializer
 from object.schemas import house_schema
 from object.schemas import purchase_schema
-from object.services import purchase_service
 
 
 @method_decorator(name='retrieve', decorator=house_schema.retrieve())

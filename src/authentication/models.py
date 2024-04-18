@@ -83,4 +83,4 @@ class Owner(models.Model):
 
 
 class TelegramIdUser(models.Model):
-    telegram_id = models.IntegerField(unique=True)
+    telegram_id = models.CharField(max_length=120, unique=True)

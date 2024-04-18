@@ -78,16 +78,18 @@ class PurchaseSchema(BasicAPISchema):
 
     def create(self):
         return self.extend_schema(
-                    description='Create purchase',
-                    summary='Create purchase',
-                    request=PurchaseSerializer,
-                    responses={
-                        201: PurchaseSerializer,
-                        400: OpenApiResponse(response='response',
-                                            description='Description of Status Code 400 cases',
-                                            examples=self.BAD_REQUEST_400)
-                    },
+            description='Create purchase',
+            summary='Create purchase',
+            request=PurchaseSerializer,
+            responses={
+                201: PurchaseSerializer,
+                400: OpenApiResponse(
+                    response='response',
+                    description='Description of Status Code 400 cases',
+                    examples=self.BAD_REQUEST_400
                 )
+            },
+        )
 
 
 house_schema = ObjectSchema(tags=['Houses'])
