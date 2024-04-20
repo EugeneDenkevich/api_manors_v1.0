@@ -221,7 +221,6 @@ class PurchaseAdminNotObjectFrom(forms.ModelForm):
         fields = [
             'was_object',
             'fio',
-            'sex',
             'passport_country',
             'address',
             'phone_number',

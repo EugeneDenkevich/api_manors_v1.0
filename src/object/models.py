@@ -190,8 +190,6 @@ class Purchase(models.Model):
                     message='Используйе только буквы латиницу или крилицу.')],
         help_text='Примеры: Грибников Семён Олегович, Грибников Семён'
     )
-    sex = models.CharField(
-        max_length=256, choices=SEX_CHOICES, verbose_name=u'Пол')
     passport_country = models.CharField(
         max_length=256, verbose_name=u'Гражданство',
         validators=[RegexValidator(regex=r'^[a-zA-Zа-яА-Я\s]+$',
@@ -221,7 +219,7 @@ class Purchase(models.Model):
                                       validators=[MinValueValidator(1),
                                                   MaxValueValidator(20)],
                                       help_text='От 1 до 20')
-    count_kids = models.IntegerField('Кол-во детей',
+    count_kids = models.IntegerField('Кол-во детей до 10 лет',
                                      validators=[MinValueValidator(0),
                                                  MaxValueValidator(20)],
                                      help_text='От 0 до 20')
