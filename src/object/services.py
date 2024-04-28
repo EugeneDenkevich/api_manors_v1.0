@@ -1,30 +1,26 @@
 from typing import List, Dict
-from datetime import datetime
-import pandas as pd
-from io import BufferedReader
-import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
 
 from object.models import Purchase
 
 
 class PurchaseService:
     """Сервис для работы с сущностью Purchase"""
-    
-    def get_daily_data(self) -> BufferedReader:
+
+    def get_daily_data(self) -> Dict:
         """
         Формируем данные по усадьбе:
-         - Получаем данные по питанию для всех домиков на сегодня.
-         - Если сегодня заселение - завтрак не входит в данные.
-         - Если сегодня выселение - ужин не входит в данные.
+         - Получаем данные по питанию для всех домиков на завтра.
+         - Если завтра заселение - завтрак не входит в данные.
+         - Если завтра выселение - ужин не входит в данные.
         
         :return: Данные для создания таблицы.
         """
-        # TODO Результат сделать в виде датакласса или pydantic схемы.
-        today = datetime.now().date()
+        tomorrow = datetime.now().date() + timedelta(days=1)
         purchases = Purchase.objects.filter(
             stat="Approved",
-            desired_arrival__lte=today,
-            desired_departure__gte=today,
+            desired_arrival__lte=tomorrow,
+            desired_departure__gte=tomorrow,
         )
         data = {
             "Домик": [],
@@ -46,16 +42,16 @@ class PurchaseService:
         }
         for purchase in purchases:
             data["Домик"].append(purchase.object.title)
-            if purchase.desired_arrival == today:
+            if purchase.desired_arrival == tomorrow:
                 data["Завтрак"].append("-")
             else:
                 self._fill_data(data, "Завтрак", breakfast, purchase)
             self._fill_data(data, "Обед", lunch, purchase)
-            if purchase.desired_departure == today:
+            if purchase.desired_departure == tomorrow:
                 data["Ужин"].append("-")
             else:
                 self._fill_data(data, "Ужин", dinner, purchase)
-        result = {
+        return {
             "data": data,
             "meals": {
                 "breakfast": breakfast,
@@ -64,9 +60,14 @@ class PurchaseService:
             },
             "purchases_count": len(purchases),
         }
-        return result
 
-    def _fill_data(self, data: Dict[str, List], meal: str, repast: Dict[str, int], purchase: Purchase):
+    def _fill_data(
+        self,
+        data: Dict[str, List],
+        meal: str,
+        repast: Dict[str, int],
+        purchase: Purchase
+    ) -> None:
         data[meal].append(
             f"{purchase.count_adult} + {purchase.count_kids}"
         )
