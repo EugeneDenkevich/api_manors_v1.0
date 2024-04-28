@@ -67,7 +67,7 @@ class PurchaseService:
         meal: str,
         repast: Dict[str, int],
         purchase: Purchase
-    ):
+    ) -> None:
         data[meal].append(
             f"{purchase.count_adult} + {purchase.count_kids}"
         )
