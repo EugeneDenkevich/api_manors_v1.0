@@ -77,18 +77,30 @@ class Object(models.Model):
         blank=True,
         null=True
     )
-    price_weekday = models.DecimalField(
+    price_min = models.DecimalField(
         decimal_places=2,
         max_digits=6,
-        verbose_name='Цена по будням',
-        validators=get_price_validators(),
+        verbose_name='Цена от',
+        validators=get_price_validators()
     )
-    price_holiday = models.DecimalField(
+    price_max = models.DecimalField(
         decimal_places=2,
         max_digits=6,
-        verbose_name='Цена по выходным',
-        validators=get_price_validators(),
+        verbose_name='Цена до',
+        validators=get_price_validators()
     )
+    # price_weekday = models.DecimalField(
+    #     decimal_places=2,
+    #     max_digits=6,
+    #     verbose_name='Цена по будням',
+    #     validators=get_price_validators(),
+    # )
+    # price_holiday = models.DecimalField(
+    #     decimal_places=2,
+    #     max_digits=6,
+    #     verbose_name='Цена по выходным',
+    #     validators=get_price_validators(),
+    # )
     created_date = models.DateField(
         auto_now_add=True, verbose_name='Дата добавления')
     is_reserved = models.BooleanField(default=False, verbose_name='Занят')

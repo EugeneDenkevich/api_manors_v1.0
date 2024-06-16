@@ -103,8 +103,8 @@ class ObjectAdmin(admin.ModelAdmin):
                     'pers_num',
                     'description_short',
                     'description_long',
-                    'price_weekday',
-                    'price_holiday',
+                    'price_min',
+                    'price_max',
                 ]
             }
         )
@@ -143,9 +143,9 @@ class ObjectAdmin(admin.ModelAdmin):
     @admin.display(description='Цена р/в')
     def prices(self, obj):
         if obj.price_holiday:
-            return f'{obj.price_weekday} / {obj.price_holiday}'
+            return f'{obj.price_min} / {obj.price_max}'
         else:
-            return f'{obj.price_weekday} / {EMPTY_VALUE}'
+            return f'{obj.price_min} / {EMPTY_VALUE}'
 
     @admin.display(description='Заказы')
     def purchase(self, obj):
