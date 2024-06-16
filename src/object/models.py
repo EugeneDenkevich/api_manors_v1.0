@@ -80,13 +80,13 @@ class Object(models.Model):
     price_weekday = models.DecimalField(
         decimal_places=2,
         max_digits=6,
-        verbose_name='Цена по будням',
+        verbose_name='Цена от',
         validators=get_price_validators(),
     )
     price_holiday = models.DecimalField(
         decimal_places=2,
         max_digits=6,
-        verbose_name='Цена по выходным',
+        verbose_name='Цена до',
         validators=get_price_validators(),
     )
     created_date = models.DateField(
