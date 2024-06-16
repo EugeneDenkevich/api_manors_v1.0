@@ -103,8 +103,8 @@ class ObjectAdmin(admin.ModelAdmin):
                     'pers_num',
                     'description_short',
                     'description_long',
-                    'price_min',
-                    'price_max',
+                    'price_weekday',
+                    'price_holiday',
                 ]
             }
         )
